@@ -1,0 +1,686 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - PulseForge Bot{% endblock %}
+
+{% block content %}
+<div x-data="dashboardApp()" x-init="init()">
+    <!-- Dashboard Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="h3 mb-0">
+                    <i class="fas fa-tachometer-alt me-2"></i>
+                    Bot Dashboard
+                </h1>
+                <div class="d-flex align-items-center">
+                    <span class="badge bg-success me-2">
+                        <i class="fas fa-circle me-1"></i>
+                        <span x-text="botStatus">Online</span>
+                    </span>
+                    <small class="text-muted">
+                        Last updated: <span x-text="lastUpdated">Never</span>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row g-4 mb-4">
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-primary rounded-3 p-3">
+                                <i class="fas fa-server text-white fa-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h6 class="text-muted mb-1">Servers</h6>
+                            <h4 class="mb-0" x-text="stats.servers">0</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-success rounded-3 p-3">
+                                <i class="fas fa-users text-white fa-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h6 class="text-muted mb-1">Total Users</h6>
+                            <h4 class="mb-0" x-text="stats.users">0</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-info rounded-3 p-3">
+                                <i class="fas fa-terminal text-white fa-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h6 class="text-muted mb-1">Commands Today</h6>
+                            <h4 class="mb-0" x-text="stats.commands_today">0</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                            <div class="bg-warning rounded-3 p-3">
+                                <i class="fas fa-clock text-white fa-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h6 class="text-muted mb-1">Uptime</h6>
+                            <h6 class="mb-0" x-text="stats.uptime">0h 0m 0s</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row g-4 mb-4">
+        <!-- Command Usage Chart -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-chart-bar me-2"></i>
+                            Command Usage (Last 7 Days)
+                        </h5>
+                        <select class="form-select form-select-sm w-auto" x-model="chartDays" @change="updateCommandChart()">
+                            <option value="1">Last 24 Hours</option>
+                            <option value="7">Last 7 Days</option>
+                            <option value="30">Last 30 Days</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <canvas id="commandChart" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Info -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom">
+                    <h5 class="mb-0">
+                        <i class="fas fa-microchip me-2"></i>
+                        System Info
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <small class="text-muted">CPU Usage</small>
+                            <small x-text="systemInfo.cpu_percent + '%'">0%</small>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-primary" :style="'width: ' + systemInfo.cpu_percent + '%'"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <small class="text-muted">Memory Usage</small>
+                            <small x-text="systemInfo.memory_percent + '%'">0%</small>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-success" :style="'width: ' + systemInfo.memory_percent + '%'"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <small class="text-muted">Disk Usage</small>
+                            <small x-text="systemInfo.disk_percent.toFixed(1) + '%'">0%</small>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-warning" :style="'width: ' + systemInfo.disk_percent + '%'"></div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <div class="text-muted small">Memory</div>
+                            <div class="fw-bold" x-text="systemInfo.memory_used + ' MB'">0 MB</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-muted small">Disk</div>
+                            <div class="fw-bold" x-text="systemInfo.disk_used + ' GB'">0 GB</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity & Server List -->
+    <div class="row g-4 mb-4">
+        <!-- Recent Activity -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-clock me-2"></i>
+                            Recent Activity
+                        </h5>
+                        <div class="d-flex align-items-center">
+                            <div class="spinner-border spinner-border-sm text-primary me-2" 
+                                 x-show="loadingActivity" style="display: none;">
+                            </div>
+                            <span class="badge bg-primary" x-text="recentActivity.length">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="activity-list" style="max-height: 400px; overflow-y: auto;">
+                        <template x-for="activity in recentActivity" :key="activity.id">
+                            <div class="border-bottom p-3">
+                                <div class="d-flex align-items-start">
+                                    <div class="flex-shrink-0 me-3">
+                                        <div class="bg-light rounded-circle p-2">
+                                            <i class="fas fa-terminal text-primary"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <div>
+                                                <h6 class="mb-1" x-text="activity.command || activity.type">Command</h6>
+                                                <p class="text-muted small mb-0">
+                                                    User: <span x-text="activity.user_id">Unknown</span> | 
+                                                    Server: <span x-text="activity.guild_id">Unknown</span>
+                                                </p>
+                                            </div>
+                                            <small class="text-muted" x-text="formatTimestamp(activity.timestamp)">Now</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <div x-show="recentActivity.length === 0" class="text-center py-4">
+                            <i class="fas fa-clock text-muted fa-2x mb-2"></i>
+                            <p class="text-muted mb-0">No recent activity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Servers -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom">
+                    <h5 class="mb-0">
+                        <i class="fas fa-trophy me-2"></i>
+                        Top Servers
+                    </h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="server-list" style="max-height: 400px; overflow-y: auto;">
+                        <template x-for="(server, index) in topServers" :key="server.id">
+                            <div class="border-bottom p-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0 me-3">
+                                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" 
+                                             style="width: 40px; height: 40px;">
+                                            <span x-text="index + 1" class="fw-bold"></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1" x-text="server.name">Server Name</h6>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <small class="text-muted">
+                                                    <i class="fas fa-users me-1"></i>
+                                                    <span x-text="server.active_users">0</span> active users
+                                                </small>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-muted">
+                                                    <i class="fas fa-terminal me-1"></i>
+                                                    <span x-text="server.commands_used">0</span> commands
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <div x-show="topServers.length === 0" class="text-center py-4">
+                            <i class="fas fa-server text-muted fa-2x mb-2"></i>
+                            <p class="text-muted mb-0">No server data available</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Server Management Section -->
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-cogs me-2"></i>
+                            Server Management
+                        </h5>
+                        <button class="btn btn-outline-primary btn-sm" @click="refreshServerData()">
+                            <i class="fas fa-sync-alt me-1"></i>
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <!-- Server Selector -->
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Select Server</label>
+                            <select class="form-select" x-model="selectedServerId" @change="loadServerSettings()">
+                                <option value="">Choose a server...</option>
+                                <template x-for="server in topServers" :key="server.id">
+                                    <option :value="server.id" x-text="server.name"></option>
+                                </template>
+                            </select>
+                        </div>
+
+                        <!-- Server Settings Form -->
+                        <div class="col-md-8" x-show="selectedServerId">
+                            <form @submit.prevent="saveServerSettings()">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Command Prefix</label>
+                                        <input type="text" class="form-control" x-model="serverSettings.prefix" 
+                                               placeholder="!" maxlength="5">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Moderation Channel ID</label>
+                                        <input type="text" class="form-control" x-model="serverSettings.mod_channel_id" 
+                                               placeholder="Channel ID">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Log Channel ID</label>
+                                        <input type="text" class="form-control" x-model="serverSettings.log_channel_id" 
+                                               placeholder="Channel ID">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Welcome Channel ID</label>
+                                        <input type="text" class="form-control" x-model="serverSettings.welcome_channel_id" 
+                                               placeholder="Channel ID">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label">Welcome Message</label>
+                                        <textarea class="form-control" rows="2" x-model="serverSettings.welcome_message" 
+                                                  placeholder="Welcome to the server, {user}!"></textarea>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Auto Role ID</label>
+                                        <input type="text" class="form-control" x-model="serverSettings.auto_role_id" 
+                                               placeholder="Role ID">
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary" :disabled="savingSettings">
+                                            <i class="fas fa-save me-1"></i>
+                                            <span x-text="savingSettings ? 'Saving...' : 'Save Settings'"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connection Status Modal -->
+    <div class="modal fade" id="connectionModal" tabindex="-1">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div x-show="!connected" class="text-warning">
+                        <i class="fas fa-exclamation-triangle fa-2x mb-2"></i>
+                        <h5>Connection Lost</h5>
+                        <p class="mb-0">Reconnecting to dashboard...</p>
+                    </div>
+                    <div x-show="connected" class="text-success">
+                        <i class="fas fa-check-circle fa-2x mb-2"></i>
+                        <h5>Connected</h5>
+                        <p class="mb-0">Dashboard is online</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function dashboardApp() {
+    return {
+        // State
+        connected: false,
+        botStatus: 'Connecting...',
+        lastUpdated: 'Never',
+        loadingActivity: false,
+        savingSettings: false,
+        
+        // Data
+        stats: {
+            servers: 0,
+            users: 0,
+            commands_today: 0,
+            total_commands: 0,
+            uptime: '0h 0m 0s'
+        },
+        
+        systemInfo: {
+            cpu_percent: 0,
+            memory_percent: 0,
+            memory_used: 0,
+            disk_percent: 0,
+            disk_used: 0
+        },
+        
+        recentActivity: [],
+        topServers: [],
+        
+        // Server Management
+        selectedServerId: '',
+        serverSettings: {
+            prefix: '!',
+            mod_channel_id: '',
+            log_channel_id: '',
+            welcome_channel_id: '',
+            welcome_message: '',
+            auto_role_id: ''
+        },
+        
+        // Chart settings
+        chartDays: 7,
+        commandChart: null,
+        
+        // Initialize
+        init() {
+            this.initializeSocketIO();
+            this.loadInitialData();
+            this.initializeChart();
+            
+            // Set up periodic updates
+            setInterval(() => {
+                this.loadStats();
+                this.loadSystemInfo();
+            }, 30000);
+        },
+        
+        // Socket.IO initialization
+        initializeSocketIO() {
+            if (typeof io !== 'undefined') {
+                const socket = io();
+                
+                socket.on('connect', () => {
+                    this.connected = true;
+                    this.botStatus = 'Online';
+                    console.log('Connected to dashboard');
+                });
+                
+                socket.on('disconnect', () => {
+                    this.connected = false;
+                    this.botStatus = 'Offline';
+                    console.log('Disconnected from dashboard');
+                });
+                
+                socket.on('stats_update', (data) => {
+                    this.stats = { ...this.stats, ...data };
+                    this.lastUpdated = new Date().toLocaleTimeString();
+                });
+                
+                socket.on('new_activity', (activity) => {
+                    this.recentActivity.unshift(activity);
+                    if (this.recentActivity.length > 20) {
+                        this.recentActivity = this.recentActivity.slice(0, 20);
+                    }
+                });
+                
+                socket.on('activity_update', (data) => {
+                    this.recentActivity = data.activities || [];
+                });
+            }
+        },
+        
+        // Load initial data
+        async loadInitialData() {
+            await Promise.all([
+                this.loadStats(),
+                this.loadSystemInfo(),
+                this.loadRecentActivity(),
+                this.loadTopServers(),
+                this.updateCommandChart()
+            ]);
+        },
+        
+        // API calls
+        async loadStats() {
+            try {
+                const response = await fetch('/api/stats');
+                if (response.ok) {
+                    this.stats = await response.json();
+                }
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        },
+        
+        async loadSystemInfo() {
+            try {
+                const response = await fetch('/api/system-info');
+                if (response.ok) {
+                    this.systemInfo = await response.json();
+                }
+            } catch (error) {
+                console.error('Error loading system info:', error);
+            }
+        },
+        
+        async loadRecentActivity() {
+            this.loadingActivity = true;
+            try {
+                const response = await fetch('/api/recent-activity');
+                if (response.ok) {
+                    this.recentActivity = await response.json();
+                }
+            } catch (error) {
+                console.error('Error loading recent activity:', error);
+            } finally {
+                this.loadingActivity = false;
+            }
+        },
+        
+        async loadTopServers() {
+            try {
+                const response = await fetch('/api/servers');
+                if (response.ok) {
+                    this.topServers = await response.json();
+                }
+            } catch (error) {
+                console.error('Error loading servers:', error);
+            }
+        },
+        
+        async updateCommandChart() {
+            try {
+                const response = await fetch(`/api/command-usage?days=${this.chartDays}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    this.updateChart(data);
+                }
+            } catch (error) {
+                console.error('Error updating command chart:', error);
+            }
+        },
+        
+        // Server management
+        async loadServerSettings() {
+            if (!this.selectedServerId) return;
+            
+            try {
+                const response = await fetch(`/api/server-settings/${this.selectedServerId}`);
+                if (response.ok) {
+                    this.serverSettings = await response.json();
+                }
+            } catch (error) {
+                console.error('Error loading server settings:', error);
+            }
+        },
+        
+        async saveServerSettings() {
+            if (!this.selectedServerId) return;
+            
+            this.savingSettings = true;
+            try {
+                const response = await fetch(`/api/server-settings/${this.selectedServerId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(this.serverSettings)
+                });
+                
+                if (response.ok) {
+                    // Show success message
+                    this.showToast('Settings saved successfully!', 'success');
+                } else {
+                    this.showToast('Failed to save settings', 'error');
+                }
+            } catch (error) {
+                console.error('Error saving server settings:', error);
+                this.showToast('Error saving settings', 'error');
+            } finally {
+                this.savingSettings = false;
+            }
+        },
+        
+        // Chart management
+        initializeChart() {
+            const ctx = document.getElementById('commandChart');
+            if (ctx) {
+                this.commandChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            label: 'Usage Count',
+                            data: [],
+                            backgroundColor: 'rgba(13, 110, 253, 0.1)',
+                            borderColor: 'rgba(13, 110, 253, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        },
+        
+        updateChart(data) {
+            if (this.commandChart && data.labels && data.data) {
+                this.commandChart.data.labels = data.labels;
+                this.commandChart.data.datasets[0].data = data.data;
+                this.commandChart.update();
+            }
+        },
+        
+        // Utility functions
+        formatTimestamp(timestamp) {
+            if (!timestamp) return 'Unknown';
+            const date = new Date(timestamp);
+            const now = new Date();
+            const diff = now - date;
+            
+            if (diff < 60000) { // Less than 1 minute
+                return 'Just now';
+            } else if (diff < 3600000) { // Less than 1 hour
+                const minutes = Math.floor(diff / 60000);
+                return `${minutes}m ago`;
+            } else if (diff < 86400000) { // Less than 1 day
+                const hours = Math.floor(diff / 3600000);
+                return `${hours}h ago`;
+            } else {
+                return date.toLocaleDateString();
+            }
+        },
+        
+        refreshServerData() {
+            this.loadTopServers();
+            if (this.selectedServerId) {
+                this.loadServerSettings();
+            }
+        },
+        
+        showToast(message, type = 'info') {
+            // Simple toast notification - could be enhanced with a proper toast library
+            const alertClass = type === 'success' ? 'alert-success' : 
+                             type === 'error' ? 'alert-danger' : 'alert-info';
+            
+            const toast = document.createElement('div');
+            toast.className = `alert ${alertClass} position-fixed top-0 end-0 m-3`;
+            toast.style.zIndex = '9999';
+            toast.textContent = message;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+    }
+}
+</script>
+{% endblock %}

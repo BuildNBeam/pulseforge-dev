@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block title %}Home - PulseForge Bot{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Hero Section -->
+    <div class="col-12 mb-5">
+        <div class="bg-primary text-white rounded p-5 text-center">
+            <h1 class="display-4 mb-3">
+                <i class="fas fa-robot me-3"></i>
+                Welcome to PulseForge Bot
+            </h1>
+            <p class="lead mb-4">
+                A comprehensive Discord bot with moderation, music, utilities, and gaming features
+            </p>
+            <a href="{{ url_for('main.dashboard') }}" class="btn btn-light btn-lg">
+                <i class="fas fa-tachometer-alt me-2"></i>
+                View Dashboard
+            </a>
+        </div>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="col-12 mb-5">
+        <h2 class="text-center mb-4">Bot Features</h2>
+        <div class="row g-4">
+            <!-- Moderation -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="text-primary mb-3">
+                            <i class="fas fa-shield-alt fa-3x"></i>
+                        </div>
+                        <h5 class="card-title">Moderation</h5>
+                        <p class="card-text">
+                            Comprehensive moderation tools including ban, kick, mute, warn, and message management.
+                        </p>
+                        <ul class="list-unstyled small text-muted">
+                            <li><i class="fas fa-check text-success me-1"></i>Ban & Kick Members</li>
+                            <li><i class="fas fa-check text-success me-1"></i>Mute & Timeout</li>
+                            <li><i class="fas fa-check text-success me-1"></i>Warning System</li>
+                            <li><i class="fas fa-check text-success me-1"></i>Message Cleanup</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Music -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="text-success mb-3">
+                            <i class="fas fa-music fa-3x"></i>
+                        </div>
+                        <h5 class="card-title">Music Player</h5>
+                        <p class="card-text">
+                            High-quality music playback with queue management and playlist support.
+                        </p>
+                        <ul class="list-unstyled small text-muted">
+                            <li><i class="fas fa-check text-success me-1"></i>YouTube Support</li>
+                            <li><i class="fas fa-check text-success me-1"></i>Queue Management</li>
+                            <li><i class="fas fa-check text-success me-1"></i>Volume Control</li>
+                            <li><i class="fas fa-check text-success me-1"></i>Skip & Pause</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Utilities -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="text-info mb-3">
+                            <i class="fas fa-tools fa-3x"></i>
+                        </div>
+                        <h5 class="card-title">Utilities</h5>
+                        <p class="card-text">
+                            Useful utility commands for server and user information management.
+                        </p>
+                        <ul class="list-unstyled small text-muted">
+                            <li><i class="fas fa-check text-success me-1"></i>Server Info</li>
+                            <li><i class="fas fa-check text-success me-1"></i>User Profiles</li>
+                            <li><i class="fas fa-check text-success me-1"></i>Role Management</li>
+                            <li><i class="fas fa-check text-success me-1"></i>System Stats</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gaming -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="text-warning mb-3">
+                            <i class="fas fa-gamepad fa-3x"></i>
+                        </div>
+                        <h5 class="card-title">Gaming</h5>
+                        <p class="card-text">
+                            Fun gaming commands to keep your server members entertained.
+                        </p>
+                        <ul class="list-unstyled small text-muted">
+                            <li><i class="fas fa-check text-success me-1"></i>Dice Rolling</li>
+                            <li><i class="fas fa-check text-success me-1"></i>Trivia Games</li>
+                            <li><i class="fas fa-check text-success me-1"></i>Magic 8-Ball</li>
+                            <li><i class="fas fa-check text-success me-1"></i>Rock Paper Scissors</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="col-12 mb-5" x-data="quickStats()">
+        <h2 class="text-center mb-4">Quick Stats</h2>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card bg-primary text-white text-center">
+                    <div class="card-body">
+                        <i class="fas fa-server fa-2x mb-2"></i>
+                        <h3 x-text="stats.servers">-</h3>
+                        <p class="mb-0">Servers</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-success text-white text-center">
+                    <div class="card-body">
+                        <i class="fas fa-users fa-2x mb-2"></i>
+                        <h3 x-text="stats.users">-</h3>
+                        <p class="mb-0">Users</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-info text-white text-center">
+                    <div class="card-body">
+                        <i class="fas fa-terminal fa-2x mb-2"></i>
+                        <h3 x-text="stats.total_commands">-</h3>
+                        <p class="mb-0">Commands Used</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-warning text-white text-center">
+                    <div class="card-body">
+                        <i class="fas fa-clock fa-2x mb-2"></i>
+                        <h3 x-text="stats.uptime">-</h3>
+                        <p class="mb-0">Uptime</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Getting Started -->
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-dark text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-play-circle me-2"></i>
+                    Getting Started
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Invite the Bot</h5>
+                        <p>Add PulseForge Bot to your Discord server with the necessary permissions.</p>
+                        <a href="#" class="btn btn-primary mb-3">
+                            <i class="fas fa-plus me-2"></i>
+                            Invite Bot
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Common Commands</h5>
+                        <ul class="list-unstyled">
+                            <li><code>/help</code> - Show all available commands</li>
+                            <li><code>/ping</code> - Check bot latency</li>
+                            <li><code>/play [song]</code> - Play music</li>
+                            <li><code>/serverinfo</code> - Get server information</li>
+                            <li><code>/ban [user]</code> - Ban a user (mod only)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function quickStats() {
+    return {
+        stats: {
+            servers: 0,
+            users: 0,
+            total_commands: 0,
+            uptime: '0h 0m 0s'
+        },
+        
+        init() {
+            this.loadStats();
+            setInterval(() => this.loadStats(), 30000); // Update every 30 seconds
+        },
+        
+        async loadStats() {
+            try {
+                const response = await fetch('/api/stats');
+                if (response.ok) {
+                    this.stats = await response.json();
+                }
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+    }
+}
+</script>
+{% endblock %}

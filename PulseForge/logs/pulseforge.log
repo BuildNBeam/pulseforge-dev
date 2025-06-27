@@ -1,0 +1,216 @@
+2025-06-27 06:06:30,410 - bot.database - INFO - Database initialized successfully
+2025-06-27 06:06:31,007 - __main__ - INFO - Starting PulseForge Bot and Web Dashboard...
+2025-06-27 06:06:31,010 - bot.bot - INFO - Loaded cog: bot.cogs.moderation
+2025-06-27 06:06:31,010 - bot.bot - INFO - Loaded cog: bot.cogs.music
+2025-06-27 06:06:31,010 - bot.bot - INFO - Loaded cog: bot.cogs.utilities
+2025-06-27 06:06:31,010 - bot.bot - INFO - Loaded cog: bot.cogs.gaming
+2025-06-27 06:06:31,010 - __main__ - ERROR - Bot failed to start: expected token to be a str, received NoneType instead
+2025-06-27 06:06:31,133 - web.app - INFO - Flask app created and configured
+2025-06-27 06:08:25,434 - bot.database - INFO - Database initialized successfully
+2025-06-27 06:08:25,590 - __main__ - INFO - Starting PulseForge Bot and Web Dashboard...
+2025-06-27 06:08:25,592 - bot.bot - INFO - Loaded cog: bot.cogs.moderation
+2025-06-27 06:08:25,593 - bot.bot - INFO - Loaded cog: bot.cogs.music
+2025-06-27 06:08:25,593 - bot.bot - INFO - Loaded cog: bot.cogs.utilities
+2025-06-27 06:08:25,593 - bot.bot - INFO - Loaded cog: bot.cogs.gaming
+2025-06-27 06:08:25,593 - __main__ - ERROR - Bot failed to start: expected token to be a str, received NoneType instead
+2025-06-27 06:08:25,667 - web.app - INFO - Flask app created and configured
+2025-06-27 06:08:43,845 - bot.database - INFO - Database initialized successfully
+2025-06-27 06:08:44,100 - __main__ - INFO - Starting PulseForge Bot and Web Dashboard...
+2025-06-27 06:08:44,103 - bot.bot - INFO - Loaded cog: bot.cogs.moderation
+2025-06-27 06:08:44,103 - bot.bot - INFO - Loaded cog: bot.cogs.music
+2025-06-27 06:08:44,103 - bot.bot - INFO - Loaded cog: bot.cogs.utilities
+2025-06-27 06:08:44,104 - bot.bot - INFO - Loaded cog: bot.cogs.gaming
+2025-06-27 06:08:44,104 - __main__ - ERROR - Bot failed to start: expected token to be a str, received NoneType instead
+2025-06-27 06:08:44,178 - web.app - INFO - Flask app created and configured
+2025-06-27 06:09:12,845 - bot.database - INFO - Database initialized successfully
+2025-06-27 06:09:12,993 - __main__ - INFO - Starting PulseForge Bot and Web Dashboard...
+2025-06-27 06:09:12,993 - __main__ - WARNING - No DISCORD_TOKEN found. Running web dashboard only.
+2025-06-27 06:09:12,993 - __main__ - INFO - To enable Discord bot, set DISCORD_TOKEN environment variable.
+2025-06-27 06:09:13,028 - web.app - INFO - Flask app created and configured
+2025-06-27 06:09:23,679 - web.app - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/web/routes.py", line 14, in index
+    return render_template('index.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/flask/templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/flask/templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: index.html
+2025-06-27 06:09:48,720 - bot.database - INFO - Database initialized successfully
+2025-06-27 06:09:48,867 - __main__ - INFO - Starting PulseForge Bot and Web Dashboard...
+2025-06-27 06:09:48,867 - __main__ - WARNING - No DISCORD_TOKEN found. Running web dashboard only.
+2025-06-27 06:09:48,867 - __main__ - INFO - To enable Discord bot, set DISCORD_TOKEN environment variable.
+2025-06-27 06:09:48,902 - web.app - INFO - Flask app created and configured
+2025-06-27 06:09:50,516 - web.socketio_events - INFO - Client connected: O534tJOdK6ysTK5MAAAB
+2025-06-27 06:10:20,650 - web.socketio_events - INFO - Client connected: Np5qTBqUJOcCUGn0AAAD
+2025-06-27 06:10:21,306 - web.socketio_events - INFO - Client disconnected: Np5qTBqUJOcCUGn0AAAD
+2025-06-27 06:12:30,383 - web.socketio_events - INFO - Client disconnected: O534tJOdK6ysTK5MAAAB
+2025-06-27 06:13:17,399 - web.socketio_events - INFO - Client connected: nDGcAPW_f2pvieRFAAAF
+2025-06-27 06:13:48,140 - web.socketio_events - INFO - Client disconnected: nDGcAPW_f2pvieRFAAAF
+2025-06-27 06:47:00,248 - bot.database - INFO - Database initialized successfully
+2025-06-27 06:47:00,660 - __main__ - INFO - Starting PulseForge Bot and Web Dashboard...
+2025-06-27 06:47:00,660 - __main__ - WARNING - No DISCORD_TOKEN found. Running web dashboard only.
+2025-06-27 06:47:00,660 - __main__ - INFO - To enable Discord bot, set DISCORD_TOKEN environment variable.
+2025-06-27 06:47:00,731 - web.app - INFO - Flask app created and configured
+2025-06-27 06:47:02,583 - web.socketio_events - INFO - Client connected: X3gz7nq8_9qMAW73AAAB
+2025-06-27 06:49:47,708 - web.socketio_events - INFO - Client connected: SIpRjNfCx_CYbtE2AAAD
+2025-06-27 06:57:11,449 - web.socketio_events - INFO - Client disconnected: SIpRjNfCx_CYbtE2AAAD
+2025-06-27 06:57:12,332 - web.socketio_events - INFO - Client connected: aH_-EhcHE4R9bIMrAAAH
+2025-06-27 06:57:12,335 - web.socketio_events - INFO - Client connected: _0Jm1Bc0X1vB3hFzAAAI
+2025-06-27 06:57:12,402 - web.socketio_events - INFO - Client connected: FPcV0VH2jWsxuAoTAAAJ
+2025-06-27 06:58:43,579 - web.socketio_events - INFO - Client disconnected: _0Jm1Bc0X1vB3hFzAAAI
+2025-06-27 06:58:43,581 - web.socketio_events - INFO - Client disconnected: X3gz7nq8_9qMAW73AAAB
+2025-06-27 06:58:44,582 - web.socketio_events - INFO - Client disconnected: aH_-EhcHE4R9bIMrAAAH
+2025-06-27 06:58:44,583 - web.socketio_events - INFO - Client disconnected: FPcV0VH2jWsxuAoTAAAJ
+2025-06-27 06:59:40,734 - web.socketio_events - INFO - Client connected: hq_umuPj3akJYFJtAAAL
+2025-06-27 06:59:40,942 - web.socketio_events - INFO - Client connected: Xjfyuv9s31g1OoPEAAAN
+2025-06-27 07:00:04,146 - web.socketio_events - INFO - Client disconnected: hq_umuPj3akJYFJtAAAL
+2025-06-27 07:00:04,859 - web.socketio_events - INFO - Client connected: aimXghtRRIpk1LoXAAAR
+2025-06-27 07:00:04,880 - web.socketio_events - INFO - Client connected: 3F0XoFpgxaj7kMn9AAAS
+2025-06-27 07:00:04,961 - web.socketio_events - INFO - Client connected: 1DtlYEGK6rY8FS4KAAAT
+2025-06-27 07:01:37,044 - web.socketio_events - INFO - Client disconnected: 3F0XoFpgxaj7kMn9AAAS
+2025-06-27 07:01:37,045 - web.socketio_events - INFO - Client disconnected: 1DtlYEGK6rY8FS4KAAAT
+2025-06-27 07:01:37,049 - web.socketio_events - INFO - Client disconnected: aimXghtRRIpk1LoXAAAR
+2025-06-27 07:01:37,660 - web.socketio_events - INFO - Client connected: z2QSYiwS7IE5Cv7-AAAV
+2025-06-27 07:03:34,915 - bot.database - INFO - Database initialized successfully
+2025-06-27 07:03:35,378 - __main__ - INFO - Starting PulseForge Bot and Web Dashboard...
+2025-06-27 07:03:35,378 - __main__ - WARNING - No DISCORD_TOKEN found. Running web dashboard only.
+2025-06-27 07:03:35,378 - __main__ - INFO - To enable Discord bot, set DISCORD_TOKEN environment variable.
+2025-06-27 07:03:35,457 - web.app - INFO - Flask app created and configured
+2025-06-27 07:03:36,976 - web.socketio_events - INFO - Client connected: jmQ8niSSMAGJYEUhAAAB
+2025-06-27 07:03:37,122 - web.socketio_events - INFO - Client connected: s8NCp930lPK47Z4TAAAD
+2025-06-27 07:08:51,150 - bot.database - INFO - Database initialized successfully
+2025-06-27 07:08:51,300 - __main__ - INFO - Starting PulseForge Bot and Web Dashboard...
+2025-06-27 07:08:51,303 - bot.bot - INFO - Loaded cog: bot.cogs.moderation
+2025-06-27 07:08:51,303 - bot.bot - INFO - Loaded cog: bot.cogs.music
+2025-06-27 07:08:51,305 - bot.bot - INFO - Loaded cog: bot.cogs.utilities
+2025-06-27 07:08:51,305 - bot.bot - INFO - Loaded cog: bot.cogs.gaming
+2025-06-27 07:08:51,357 - web.app - INFO - Flask app created and configured
+2025-06-27 07:08:52,353 - __main__ - ERROR - Bot failed to start: Shard ID None is requesting privileged intents that have not been explicitly enabled in the developer portal. It is recommended to go to https://discord.com/developers/applications/ and explicitly enable the privileged intents within your application's page. If this is not possible, then consider disabling the privileged intents instead.
+2025-06-27 07:08:52,560 - web.socketio_events - INFO - Client connected: Z9ZPdR0NpyOuA2Q7AAAC
+2025-06-27 07:08:52,631 - web.socketio_events - INFO - Client connected: oeSosEg2-54T5qQMAAAD
+2025-06-27 07:08:59,431 - web.socketio_events - INFO - Client connected: u48e-irPAKC5PLiaAAAF
+2025-06-27 07:09:00,103 - web.socketio_events - INFO - Client disconnected: u48e-irPAKC5PLiaAAAF
+2025-06-27 07:09:44,312 - web.socketio_events - INFO - Client disconnected: oeSosEg2-54T5qQMAAAD
+2025-06-27 07:09:45,271 - web.socketio_events - INFO - Client connected: huPs1F2k4GX0Xv2HAAAJ
+2025-06-27 07:09:45,278 - web.socketio_events - INFO - Client connected: nN64prC835B22aeyAAAK
+2025-06-27 07:09:45,354 - web.socketio_events - INFO - Client connected: SMkJXvaBWn9yqxBxAAAL
+2025-06-27 07:09:58,859 - bot.database - INFO - Database initialized successfully
+2025-06-27 07:09:59,005 - __main__ - INFO - Starting PulseForge Bot and Web Dashboard...
+2025-06-27 07:09:59,008 - bot.bot - INFO - Loaded cog: bot.cogs.moderation
+2025-06-27 07:09:59,008 - bot.bot - INFO - Loaded cog: bot.cogs.music
+2025-06-27 07:09:59,009 - bot.bot - INFO - Loaded cog: bot.cogs.utilities
+2025-06-27 07:09:59,009 - bot.bot - INFO - Loaded cog: bot.cogs.gaming
+2025-06-27 07:09:59,054 - web.app - INFO - Flask app created and configured
+2025-06-27 07:09:59,862 - __main__ - ERROR - Bot failed to start: Shard ID None is requesting privileged intents that have not been explicitly enabled in the developer portal. It is recommended to go to https://discord.com/developers/applications/ and explicitly enable the privileged intents within your application's page. If this is not possible, then consider disabling the privileged intents instead.
+2025-06-27 07:10:00,056 - web.socketio_events - INFO - Client connected: fuzwMFQ6EfPu1euNAAAB
+2025-06-27 07:10:00,729 - web.socketio_events - INFO - Client connected: jbkbhWyEa66K3J0oAAAD
+2025-06-27 07:10:03,903 - web.socketio_events - INFO - Client disconnected: jbkbhWyEa66K3J0oAAAD
+2025-06-27 07:10:04,611 - web.socketio_events - INFO - Client connected: 4S3T_aD6jhB1jkznAAAH
+2025-06-27 07:10:04,654 - web.socketio_events - INFO - Client connected: vXjfhNOCq5lU8-0AAAAI
+2025-06-27 07:10:04,680 - web.socketio_events - INFO - Client connected: PeVY1sEK1Of7cazmAAAJ
+2025-06-27 07:10:25,691 - web.socketio_events - INFO - Client disconnected: PeVY1sEK1Of7cazmAAAJ
+2025-06-27 07:10:25,692 - web.socketio_events - INFO - Client disconnected: vXjfhNOCq5lU8-0AAAAI
+2025-06-27 07:10:25,693 - web.socketio_events - INFO - Client disconnected: 4S3T_aD6jhB1jkznAAAH
+2025-06-27 07:10:26,329 - web.socketio_events - INFO - Client connected: VOSDQWpCm3Rv9SOAAAAN
+2025-06-27 07:10:26,389 - web.socketio_events - INFO - Client connected: gQcLha3C2L93FPLdAAAO
+2025-06-27 07:10:26,399 - web.socketio_events - INFO - Client connected: K5ZeZRzOP5aA23x0AAAP
+2025-06-27 07:10:28,180 - web.socketio_events - INFO - Client disconnected: K5ZeZRzOP5aA23x0AAAP
+2025-06-27 07:10:28,181 - web.socketio_events - INFO - Client disconnected: VOSDQWpCm3Rv9SOAAAAN
+2025-06-27 07:10:28,180 - web.socketio_events - INFO - Client disconnected: gQcLha3C2L93FPLdAAAO
+2025-06-27 07:10:28,767 - web.socketio_events - INFO - Client connected: GuZekmkUhUqBmY20AAAR
+2025-06-27 07:10:39,231 - web.socketio_events - INFO - Client disconnected: GuZekmkUhUqBmY20AAAR
+2025-06-27 07:10:39,890 - web.socketio_events - INFO - Client connected: KxQt6YHa2DAzrRZMAAAV
+2025-06-27 07:10:39,942 - web.socketio_events - INFO - Client connected: 0F7rkVySGc6kegsBAAAW
+2025-06-27 07:10:39,965 - web.socketio_events - INFO - Client connected: qY72VD31HaTMS4wwAAAX
+2025-06-27 07:12:15,620 - bot.database - INFO - Database initialized successfully
+2025-06-27 07:12:15,785 - __main__ - INFO - Starting PulseForge Bot and Web Dashboard...
+2025-06-27 07:12:15,800 - bot.bot - INFO - Loaded cog: bot.cogs.moderation
+2025-06-27 07:12:15,802 - bot.bot - INFO - Loaded cog: bot.cogs.music
+2025-06-27 07:12:15,802 - bot.bot - INFO - Loaded cog: bot.cogs.utilities
+2025-06-27 07:12:15,803 - bot.bot - INFO - Loaded cog: bot.cogs.gaming
+2025-06-27 07:12:15,874 - web.app - INFO - Flask app created and configured
+2025-06-27 07:12:16,709 - __main__ - ERROR - Bot failed to start: Shard ID None is requesting privileged intents that have not been explicitly enabled in the developer portal. It is recommended to go to https://discord.com/developers/applications/ and explicitly enable the privileged intents within your application's page. If this is not possible, then consider disabling the privileged intents instead.
+2025-06-27 07:12:17,092 - web.socketio_events - INFO - Client connected: G4Vr7a2zI684gcfcAAAB
+2025-06-27 07:12:17,237 - web.socketio_events - INFO - Client connected: Tf7o1MIyBhQWJ4qvAAAD
+2025-06-27 07:12:42,873 - bot.database - INFO - Database initialized successfully
+2025-06-27 07:12:43,037 - __main__ - INFO - Starting PulseForge Bot and Web Dashboard...
+2025-06-27 07:12:43,043 - bot.bot - INFO - Loaded cog: bot.cogs.moderation
+2025-06-27 07:12:43,043 - bot.bot - INFO - Loaded cog: bot.cogs.music
+2025-06-27 07:12:43,043 - bot.bot - INFO - Loaded cog: bot.cogs.utilities
+2025-06-27 07:12:43,043 - bot.bot - INFO - Loaded cog: bot.cogs.gaming
+2025-06-27 07:12:43,098 - web.app - INFO - Flask app created and configured
+2025-06-27 07:12:44,100 - web.socketio_events - INFO - Client connected: Va71QDyefpeuKZ5TAAAC
+2025-06-27 07:12:44,140 - web.socketio_events - INFO - Client connected: C4Iq2ADqT6LKGGQuAAAD
+2025-06-27 07:12:46,261 - bot.bot - INFO - PulseForge#5382 has connected to Discord!
+2025-06-27 07:12:46,261 - bot.bot - INFO - Bot is in 1 guilds
+2025-06-27 07:12:46,672 - bot.bot - INFO - Synced 32 slash commands
+2025-06-27 07:15:06,012 - web.socketio_events - INFO - Client disconnected: C4Iq2ADqT6LKGGQuAAAD
+2025-06-27 07:15:06,699 - web.socketio_events - INFO - Client connected: TOiPUr1c1JUJQ5jBAAAH
+2025-06-27 07:15:06,755 - web.socketio_events - INFO - Client connected: Zt746KWlJn3Q5_AoAAAI
+2025-06-27 07:15:06,765 - web.socketio_events - INFO - Client connected: 2UoOGpjOwrAT4gh2AAAJ
+2025-06-27 07:15:42,249 - bot.bot - INFO - Command used: help by uyscutidemon in uyscutidemon's server
+2025-06-27 07:16:49,239 - bot.bot - INFO - Command used: join by uyscutidemon in uyscutidemon's server
+2025-06-27 07:16:49,240 - bot.bot - ERROR - Command error in join: Hybrid command raised an error: Command 'join' raised an exception: RuntimeError: PyNaCl library needed in order to use voice
+2025-06-27 07:18:27,270 - bot.database - INFO - Database initialized successfully
+2025-06-27 07:18:27,837 - __main__ - INFO - Starting PulseForge Bot and Web Dashboard...
+2025-06-27 07:18:27,841 - bot.bot - INFO - Loaded cog: bot.cogs.moderation
+2025-06-27 07:18:27,842 - bot.bot - INFO - Loaded cog: bot.cogs.music
+2025-06-27 07:18:27,842 - bot.bot - INFO - Loaded cog: bot.cogs.utilities
+2025-06-27 07:18:27,842 - bot.bot - INFO - Loaded cog: bot.cogs.gaming
+2025-06-27 07:18:27,984 - web.app - INFO - Flask app created and configured
+2025-06-27 07:18:29,193 - web.socketio_events - INFO - Client connected: IOVld5os5i3kgxsCAAAB
+2025-06-27 07:18:29,417 - web.socketio_events - INFO - Client connected: K1klIty4vsISx5OTAAAD
+2025-06-27 07:18:30,838 - bot.bot - INFO - PulseForge#5382 has connected to Discord!
+2025-06-27 07:18:30,838 - bot.bot - INFO - Bot is in 1 guilds
+2025-06-27 07:18:31,061 - bot.bot - INFO - Synced 32 slash commands
+2025-06-27 07:19:25,702 - bot.bot - INFO - Command used: join by uyscutidemon in uyscutidemon's server
+2025-06-27 07:19:51,953 - bot.bot - ERROR - Command error in join: Hybrid command raised an error: Command 'join' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-06-27 07:20:11,802 - web.socketio_events - INFO - Client disconnected: K1klIty4vsISx5OTAAAD
+2025-06-27 07:20:12,612 - web.socketio_events - INFO - Client connected: 8GbXRB5WOJN1NxJXAAAH
+2025-06-27 07:20:12,613 - web.socketio_events - INFO - Client connected: ToOyNhcAn4PnHOBmAAAI
+2025-06-27 07:20:12,681 - web.socketio_events - INFO - Client connected: RwYgKHyJklIXXdvlAAAJ
+2025-06-27 07:20:27,485 - web.socketio_events - INFO - Client disconnected: ToOyNhcAn4PnHOBmAAAI
+2025-06-27 07:20:27,489 - web.socketio_events - INFO - Client disconnected: 8GbXRB5WOJN1NxJXAAAH
+2025-06-27 07:20:27,491 - web.socketio_events - INFO - Client disconnected: RwYgKHyJklIXXdvlAAAJ
+2025-06-27 07:20:28,238 - web.socketio_events - INFO - Client connected: IdDsLfEptUJLk9lSAAAN
+2025-06-27 07:20:28,286 - web.socketio_events - INFO - Client connected: PfqdoeGd2RYesw-FAAAO
+2025-06-27 07:20:28,319 - web.socketio_events - INFO - Client connected: hLJWRygO096B97XYAAAP
+2025-06-27 07:25:09,875 - bot.bot - INFO - Command used: 8ball by uyscutidemon in uyscutidemon's server
+2025-06-27 07:25:47,873 - bot.bot - INFO - Command used: botinfo by uyscutidemon in uyscutidemon's server
+2025-06-27 07:25:59,516 - web.socketio_events - INFO - Client disconnected: hLJWRygO096B97XYAAAP
+2025-06-27 07:25:59,517 - web.socketio_events - INFO - Client disconnected: IdDsLfEptUJLk9lSAAAN
+2025-06-27 07:25:59,517 - web.socketio_events - INFO - Client disconnected: PfqdoeGd2RYesw-FAAAO
+2025-06-27 07:26:00,439 - web.socketio_events - INFO - Client connected: xCCrqUTfRDgjcjtkAAAT
+2025-06-27 07:26:00,461 - web.socketio_events - INFO - Client connected: T4SK5A9KoQ1wcNgoAAAU
+2025-06-27 07:26:00,583 - web.socketio_events - INFO - Client connected: z5vZNr3cRKzIkWpoAAAV
+2025-06-27 07:26:40,994 - bot.bot - INFO - Command used: ping by uyscutidemon in uyscutidemon's server
